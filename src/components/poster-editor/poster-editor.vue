@@ -33,7 +33,6 @@
 			backgroundPosition:`${poster_bg_image_x + 'px'} ${poster_bg_image_y + 'px'}`,
 			backgroundSize:`${poster_bg_image_width}% auto`,
 		}">
-				<div class="location-box"></div>
 				<div class="element" v-for="(item,index) in elements" :key="item.id" @click.stop="" :style="{
 				fontFamily:item.fontFamily,
 				color:item.color,
@@ -48,7 +47,7 @@
 				transform:'rotate('+item.rotate+'deg)',
 				borderRadius:`${item.borderTopLeftRadius}px ${item.borderTopRightRadius}px ${item.borderBottomRightRadius}px ${item.borderBottomLeftRadius}px`,
 			}" @mousedown="select(item,index)">
-					<span v-if="item.type=='text'">{{item.text}}</span>
+					<div v-if="item.type=='text'">{{item.text}}</div>
 					<img v-if="item.type=='image'" :src="item.src" />
 				</div>
 			</div>
@@ -66,9 +65,9 @@
 								</span>
 							</template>
 							<el-menu-item class="location">
-								<div class="item">X：<el-input @input="showLocationBox" type="number" v-model="elements[element_index].left"></el-input>
+								<div class="item">X：<el-input type="number" v-model="elements[element_index].left"></el-input>
 								</div>
-								<div class="item">Y：<el-input @input="showLocationBox" type="number" v-model="elements[element_index].top"></el-input>
+								<div class="item">Y：<el-input type="number" v-model="elements[element_index].top"></el-input>
 								</div>
 							</el-menu-item>
 						</el-submenu>
@@ -79,11 +78,11 @@
 								</span>
 							</template>
 							<el-menu-item v-if="element_current.type=='text'">
-								<div class="item">文本：<el-input @input="showLocationBox" v-model="elements[element_index].text"></el-input>
+								<div class="item">文本：<el-input v-model="elements[element_index].text"></el-input>
 								</div>
 							</el-menu-item>
 							<el-menu-item v-if="element_current.type=='text'">
-								<div class="item">文字大小：<el-slider :step="1" :min="8" :max="120" v-model="elements[element_index].fontSize" @input="showLocationBox"></el-slider>
+								<div class="item">文字大小：<el-slider :step="1" :min="8" :max="120" v-model="elements[element_index].fontSize"></el-slider>
 								</div>
 							</el-menu-item>
 							<el-menu-item v-if="element_current.type=='text'">
@@ -106,27 +105,27 @@
 								</div>
 							</el-menu-item>
 							<el-menu-item v-if="element_current.type=='image'">
-								<div class="item">图片大小：<el-slider :step="1" :min="10" :max="300" v-model="elements[element_index].width" @input="showLocationBox"></el-slider>
+								<div class="item">图片大小：<el-slider :step="1" :min="10" :max="300" v-model="elements[element_index].width"></el-slider>
 								</div>
 							</el-menu-item>
 							<el-menu-item v-if="element_current.type=='image'">
-								<div class="item">左上圆角：<el-slider :step="1" :min="0" :max="300" v-model="elements[element_index].borderTopLeftRadius" @input="showLocationBox"></el-slider>
+								<div class="item">左上圆角：<el-slider :step="1" :min="0" :max="300" v-model="elements[element_index].borderTopLeftRadius"></el-slider>
 								</div>
 							</el-menu-item>
 							<el-menu-item v-if="element_current.type=='image'">
-								<div class="item">右上圆角：<el-slider :step="1" :min="0" :max="300" v-model="elements[element_index].borderTopRightRadius" @input="showLocationBox"></el-slider>
+								<div class="item">右上圆角：<el-slider :step="1" :min="0" :max="300" v-model="elements[element_index].borderTopRightRadius"></el-slider>
 								</div>
 							</el-menu-item>
 							<el-menu-item v-if="element_current.type=='image'">
-								<div class="item">左下圆角：<el-slider :step="1" :min="0" :max="300" v-model="elements[element_index].borderBottomRightRadius" @input="showLocationBox"></el-slider>
+								<div class="item">左下圆角：<el-slider :step="1" :min="0" :max="300" v-model="elements[element_index].borderBottomRightRadius"></el-slider>
 								</div>
 							</el-menu-item>
 							<el-menu-item v-if="element_current.type=='image'">
-								<div class="item">右下圆角：<el-slider :step="1" :min="0" :max="300" v-model="elements[element_index].borderBottomLeftRadius" @input="showLocationBox"></el-slider>
+								<div class="item">右下圆角：<el-slider :step="1" :min="0" :max="300" v-model="elements[element_index].borderBottomLeftRadius"></el-slider>
 								</div>
 							</el-menu-item>
 							<!-- <el-menu-item>
-								<div class="item">旋转：<el-slider :step="1" :min="0" :max="360" v-model="elements[element_index].rotate" @input="showLocationBox"></el-slider>
+								<div class="item">旋转：<el-slider :step="1" :min="0" :max="360" v-model="elements[element_index].rotate"></el-slider>
 								</div>
 							</el-menu-item> -->
 							<el-menu-item>

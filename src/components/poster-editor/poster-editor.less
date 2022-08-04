@@ -1,6 +1,9 @@
 * {
 	box-sizing: border-box;
 }
+html,body{
+	color:#555;
+}
 
 body,
 h1,
@@ -17,7 +20,11 @@ img {
 	vertical-align: top;
 }
 
-@border: #DDD;
+@info: #909399;
+@primary:#409eff;
+@success:#67c23a;
+@warn:#e6a23c;
+@danger:#f56c6c;
 
 .c-poster-editor {
 	max-width: 1600px;
@@ -25,6 +32,7 @@ img {
 	display: flex;
 	justify-content: space-between;
 	background-color: #EEE;
+	line-height: 1;
 
 	.el-submenu__title {
 		padding-left: 10px !important;
@@ -52,7 +60,7 @@ img {
 
 		.el-tabs {
 			height: 100%;
-			border-right: 1px solid @border;
+			border-right: 1px solid @info;
 
 			.el-tabs__header {
 				margin-right: 0;
@@ -74,11 +82,9 @@ img {
 			}
 
 			.item {
-				opacity: .82;
 
 				&:hover {
-					opacity: 1;
-					box-shadow: 0 0 10px 5px @border;
+					color:@primary;
 				}
 			}
 
@@ -86,15 +92,11 @@ img {
 				margin-right: 10px;
 
 				.item {
-					border-bottom: 1px solid @border;
+					border-bottom: 1px solid @info;
 					padding: .5em;
 
 					&:last-child {
 						border-bottom: none;
-					}
-
-					&:hover {
-						background-color: #EEE;
 					}
 				}
 
@@ -152,14 +154,6 @@ img {
 		line-height: 1;
 		overflow: hidden;
 
-		.location-box {
-			display: none;
-			position: absolute;
-			z-index: 2000;
-			border: 2px dashed #409eff;
-			pointer-events: none;
-		}
-
 		.element {
 			display: inline-block;
 			cursor: pointer;
@@ -168,6 +162,7 @@ img {
 			user-select: none;
 			overflow: hidden;
 			white-space: nowrap;
+			border:2px dashed @primary;
 		}
 	}
 
@@ -176,7 +171,7 @@ img {
 		min-width: 290px;
 		max-width: 290px;
 		margin-left: 20px;
-		border-left: 1px solid @border;
+		border-left: 1px solid @info;
 
 		.el-tabs {
 			height: 100%;
@@ -196,7 +191,7 @@ img {
 		}
 
 		.el-submenu {
-			border-bottom: 1px solid @border;
+			border-bottom: 1px solid @info;
 			padding-bottom: 1em;
 
 			&:last-child {
@@ -251,7 +246,7 @@ img {
 				padding: 0 1em;
 				line-height: 2.5;
 				cursor: pointer;
-				border-bottom: 1px solid @border;
+				border-bottom: 1px solid @info;
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
@@ -283,7 +278,7 @@ img {
 			}
 
 			.image-slot {
-				border: 1px solid @border;
+				border: 1px solid @info;
 				border-radius: 4px;
 				padding: 0 1em;
 				line-height: 2;

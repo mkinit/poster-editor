@@ -125,7 +125,6 @@ export default {
 			element.bold = bold
 			this.elements.push(element)
 			this.element_index = this.elements.length - 1
-			this.showLocationBox()
 		},
 
 		//添加图片
@@ -142,7 +141,7 @@ export default {
 				this.element_index = this.elements.length - 1
 				setTimeout(() => {
 					loadingInstance.close()
-					this.showLocationBox()
+
 				}, 0)
 			}
 		},
@@ -212,7 +211,7 @@ export default {
 				element.left = (x_move - x_click + left)
 				element.top = (y_move - y_click + top)
 
-				this.showLocationBox()
+
 
 			}
 			document.onmouseup = () => {
@@ -234,7 +233,7 @@ export default {
 					a.href = canvas.toDataURL();
 					a.download = '海报';
 					a.click();
-				});
+				})
 			})
 		},
 
@@ -252,28 +251,6 @@ export default {
 						message: '图层已删除'
 					})
 				})
-		},
-
-		//显示图层位置
-		showLocationBox() {
-			const { location_box, elements, element_index } = this
-			if (element_index < 0) {
-				this.location_box.style.display = 'none'
-			} else {
-				this.$nextTick(() => {
-					const element = document.querySelectorAll('.poster .element')[element_index]
-					const width = parseInt(getComputedStyle(element).width) + 6 + 'px'
-					const height = parseInt(getComputedStyle(element).height) + 6 + 'px'
-					const top = parseInt(getComputedStyle(element).top) - 3 + 'px'
-					const left = parseInt(getComputedStyle(element).left) - 3 + 'px'
-					location_box.style.display = 'block'
-					location_box.style.width = width
-					location_box.style.height = height
-					location_box.style.top = top
-					location_box.style.left = left
-					location_box.style.transform = 'rotate(' + elements[element_index].rotate + 'deg)'
-				})
-			}
 		},
 
 		//设置位置
@@ -306,13 +283,7 @@ export default {
 					}
 					break
 			}
-			this.showLocationBox()
 		},
-	},
-	watch: {
-		element_index() {
-			this.showLocationBox()
-		}
 	},
 	computed: {
 		element_current() {
@@ -321,7 +292,4 @@ export default {
 			return elements[element_index]
 		}
 	},
-	mounted() {
-		this.location_box = document.querySelector('.location-box')
-	}
 }
